@@ -20,6 +20,9 @@
     float: left;
 }
 
+.fruit {
+    background-color: green;
+}
 .snake {
     background-color: blue;
 }
