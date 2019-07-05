@@ -5,6 +5,7 @@ class Snake {
         this.y = y;
         this.course = course;
         this.newCourse = course;
+        this.isAlive = true;
     }
 
     render() {
@@ -12,8 +13,13 @@ class Snake {
     }
 
     move() {
-        this.matrix.setCell(this.x, this.y, '');
+        if (!this.isAlive) {
+            return;
+        }
         this.course = this.newCourse;
+        let prevX = this.x;
+        let prevY = this.y;
+
         switch (this.course) {
             case 'right':
                 this.x++;
@@ -29,7 +35,17 @@ class Snake {
                 break;
 
         }
+        if (!this._checkAlive()) {
+            this.isAlive = false;
+            return;
+        }
+        this.matrix.setCell(prevX, prevY, '');
         this.matrix.setCell(this.x, this.y, 'snake');
+    }
+
+    _checkAlive () {
+        return this.x >= 1 && this.x <= 20 &&
+            this.y >= 1 && this.y <=20;
     }
 
 }

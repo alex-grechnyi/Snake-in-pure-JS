@@ -2,8 +2,8 @@ import Matrix from './instances/matrix';
 import Snake from './instances/snake';
 
 window.addEventListener('load', function (e) {
-    let div = document.querySelector('.fields');
-    let matrix = new Matrix(div);
+    let field = document.querySelector('.fields');
+    let matrix = new Matrix(field);
     matrix.create();
     matrix.setCell(19, 1, 'fruit');
 
@@ -26,8 +26,15 @@ window.addEventListener('load', function (e) {
                 break;
         }
     };
+    if (snake.isAlive){
+    let timer = setInterval(() => {
+        snake.move();
+        !snake.isAlive && clearInterval(timer);
+    }, 400)
+    }
+    else {
 
-    setInterval(() => {snake.move()}, 500)
+    }
 });
 
 

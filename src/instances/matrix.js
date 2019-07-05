@@ -1,13 +1,19 @@
 class Matrix {
-    constructor(elem) {
+    constructor(elem, rows=20, cols=20) {
         this.elem = elem;
+        this.rows = rows;
+        this.cols = cols;
         this.cells = [];
     }
 
     create () {
-        for (let i = 0; i < 400; i++) {
+        for (let i = 0; i < this.rows * this.cols; i++) {
             let div = document.createElement('div');
+            if (i % this.cols === 0) {
+                div.classList.add('row-start');
+            }
             this.elem.appendChild(div);
+            this.cells[i] = '';
         }
     };
 
@@ -19,7 +25,7 @@ class Matrix {
     setCell(x, y, value) {
         let num = this._calcNum(x, y);
         this.cells[num] = value;
-        this.elem.children[num].className = value;
+        this.elem.children[num].setAttribute('data-game', value);
     };
 
     _calcNum(x, y) {
