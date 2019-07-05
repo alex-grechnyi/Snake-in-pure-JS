@@ -4,6 +4,7 @@ class Snake {
         this.x = x;
         this.y = y;
         this.course = course;
+        this.newCourse = course;
     }
 
     render() {
@@ -12,6 +13,7 @@ class Snake {
 
     move() {
         this.matrix.setCell(this.x, this.y, '');
+        this.course = this.newCourse;
         switch (this.course) {
             case 'right':
                 this.x++;
