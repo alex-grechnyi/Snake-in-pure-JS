@@ -1,15 +1,15 @@
 import Matrix from './instances/matrix';
 import Snake from './instances/snake';
 import Fruit from "./instances/fruit";
+import Wall from "./instances/wall";
 
 
 window.addEventListener('load', function (e) {
     let field = document.querySelector('.fields');
     let matrix = new Matrix(field);
     matrix.create();
-    let fruit = new Fruit(matrix, [[6,4]]);
-    fruit.render();
-
+    (new Fruit(matrix, [[7,4]])).render();
+    (new Wall(matrix, [[6,6], [5,6], [4,6]])).render();
     let snake = new Snake(matrix, [[3,5], [2,5]], 'right');
     snake.render();
 

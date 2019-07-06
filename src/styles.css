@@ -28,3 +28,6 @@
 .fields > div[data-game="snake"] {
     background-color: blue;
 }
+.fields > div[data-game="wall"] {
+    background-color: black;
+}
