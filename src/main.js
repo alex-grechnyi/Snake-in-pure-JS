@@ -1,12 +1,14 @@
 import Matrix from './instances/matrix';
 import Snake from './instances/snake';
+import Fruit from "./instances/fruit";
 
 
 window.addEventListener('load', function (e) {
     let field = document.querySelector('.fields');
     let matrix = new Matrix(field);
     matrix.create();
-    matrix.setCell(19, 1, 'fruit');
+    let fruit = new Fruit(matrix, [[6,4]]);
+    fruit.render();
 
     let snake = new Snake(matrix, [[3,5], [2,5]], 'right');
     snake.render();
