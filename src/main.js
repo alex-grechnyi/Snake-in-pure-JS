@@ -1,13 +1,14 @@
 import Matrix from './instances/matrix';
 import Snake from './instances/snake';
 
+
 window.addEventListener('load', function (e) {
     let field = document.querySelector('.fields');
     let matrix = new Matrix(field);
     matrix.create();
     matrix.setCell(19, 1, 'fruit');
 
-    let snake = new Snake(matrix, 8, 8, 'right');
+    let snake = new Snake(matrix, [[3,5], [2,5]], 'right');
     snake.render();
 
     document.onkeydown = function (e) {
