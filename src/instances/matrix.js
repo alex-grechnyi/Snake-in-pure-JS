@@ -29,7 +29,7 @@ class Matrix {
     };
 
     _calcNum(x, y) {
-        return x-1 + (y-1)*20
+        return x-1 + (y-1) * this.cols
     }
 }
 export default Matrix;

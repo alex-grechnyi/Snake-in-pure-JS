@@ -7,15 +7,15 @@ class Snake extends Elem{
         this.course = course;
         this.newCourse = course;
         this.isAlive = true;
+        this.isEaten = false;
     }
 
     move() {
         if (!this.isAlive) {
             return;
         }
+        this.isEaten = false;
         this.course = this.newCourse;
-        let prevX = this.x;
-        let prevY = this.y;
 
         let head = this.coords[0].slice();
 
@@ -38,17 +38,27 @@ class Snake extends Elem{
             this.isAlive = false;
             return;
         }
+        let currentCell = this.matrix.getCell(head[0], head[1]);
 
-        let tail = this.coords.pop();
-        this.matrix.setCell(tail[0], tail[1], '');
+        if (currentCell === 'snake' || currentCell === 'wall') {
+            this.isAlive = false;
+            return
+        }
+        if (currentCell === 'fruit') {
+            this.isEaten = true;
+        }
+        else {
+            let tail = this.coords.pop();
+            this.matrix.setCell(tail[0], tail[1], '');
+        }
 
         this.coords.unshift(head);
         this.matrix.setCell(head[0], head[1], 'snake');
     }
 
-    _checkAlive (head) {
+    _checkAlive(head) {
         return head[0] >= 1 && head[0] <= this.matrix.cols &&
-            head[1] >= 1 && head[1] <=20;
+            head[1] >= 1 && head[1] <= this.matrix.rows;
     }
 
 }
